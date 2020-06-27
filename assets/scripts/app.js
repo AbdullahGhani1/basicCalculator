@@ -1,8 +1,10 @@
 const defaultResult = 0;
 let currentResult = defaultResult;
+let logEntries = [];
+
 // GET input from input field
 function getUserumberInput() {
-  return +userInput.value;
+  return parseInt(userInput.value);
 }
 // Generates and writes calculaton log
 function createAndWriteOutput(operator, beforeCalc, calcNumber) {
@@ -15,6 +17,8 @@ function add() {
   const initialResult = currentResult;
   currentResult = currentResult + enteredNumber;
   createAndWriteOutput("+", initialResult, enteredNumber);
+  logEntries.push(enteredNumber);
+  console.log(logEntries);
 }
 function subtruct() {
   const enteredNumber = getUserumberInput();
