@@ -1,10 +1,13 @@
 const defaultResult = 0;
 let currentResult = defaultResult;
+// GET input from input field
 function getUserumberInput() {
   return +userInput.value;
 }
+// Generates and writes calculaton log
 function createAndWriteOutput(operator, beforeCalc, calcNumber) {
-  const calcDescription = `${resultB} ${operator} ${calcNumber}`;
+  const calcDescription = `${beforeCalc} ${operator} ${calcNumber}`;
+  //   function calling from vender.js
   outputResult(currentResult, calcDescription);
 }
 function add() {
