@@ -27,34 +27,59 @@ function logEntry(
   logEntries.push(logEntry);
   console.log(logEntries);
 }
-function add() {
+function calculateResult(calculationType) {
   const enteredNumber = getUserumberInput();
+
+  if (
+    (calculationType !== "ADD" &&
+      calculationType !== "SUBTRUCT" &&
+      calculationType !== "MULTIPLY" &&
+      calculationType !== "DIVIDE") ||
+    !enteredNumber
+  ) {
+    return;
+  }
+
   const initialResult = currentResult;
-  currentResult = currentResult + enteredNumber;
-  createAndWriteOutput("+", initialResult, enteredNumber);
-  logEntry("Add", initialResult, enteredNumber, currentResult);
+  let mathOperator;
+
+  if (calculationType === "ADD") {
+    currentResult += enteredNumber;
+    mathOperator = "+";
+  } else if (calculationType === "SUBTRUCT") {
+    currentResult -= enteredNumber;
+    mathOperator = "-";
+  } else if (calculationType === "MULTIPLY") {
+    currentResult *= enteredNumber;
+    mathOperator = "*";
+  } else if (calculationType === "DIVIDE") {
+    currentResult /= enteredNumber;
+    mathOperator = "/";
+  }
+
+  createAndWriteOutput(mathOperator, initialResult, enteredNumber);
+  logEntry(calculationType, initialResult, enteredNumber, currentResult);
 }
-function subtruct() {
-  const enteredNumber = getUserumberInput();
-  const initialResult = currentResult;
-  currentResult = currentResult - enteredNumber;
-  createAndWriteOutput("-", initialResult, enteredNumber);
-  logEntry("Subtruct", initialResult, enteredNumber, currentResult);
-}
-function multiply() {
-  const enteredNumber = getUserumberInput();
-  const initialResult = currentResult;
-  currentResult = currentResult * enteredNumber;
-  createAndWriteOutput("*", initialResult, enteredNumber);
-  logEntry("Multiply", initialResult, enteredNumber, currentResult);
-}
-function divide() {
-  const enteredNumber = getUserumberInput();
-  const initialResult = currentResult;
-  currentResult = currentResult / enteredNumber;
-  createAndWriteOutput("/", initialResult, enteredNumber);
-  logEntry("Division", initialResult, enteredNumber, currentResult);
-}
+// Arrow Function
+add = () => calculateResult("ADD");
+// function add() {
+//   calculateResult("ADD");
+// }
+subtruct = () => calculateResult("SUBTRUCT");
+// function subtruct() {
+//   calculateResult("SUBTRUCT");
+// }
+
+multiply = () => calculateResult("MULTIPLY");
+// function multiply() {
+//   calculateResult("MULTIPLY");
+// }
+
+divide = () => calculateResult("DIVIDE");
+// function divide() {
+//   calculateResult("DIVIDE");
+// }
+
 addBtn.addEventListener("click", add);
 subtractBtn.addEventListener("click", subtruct);
 multiplyBtn.addEventListener("click", multiply);
